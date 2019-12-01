@@ -1,0 +1,4 @@
+Simple crypto wrapper implmenting Stream wrapping a NetworkStream.
+
+Check test project for usage example.
+Check main project for documentation of interface.

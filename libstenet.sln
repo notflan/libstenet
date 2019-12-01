@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "libstenet", "libstenet\libstenet.csproj", "{80064396-C3F3-4D92-9FCF-7C44B52DBC6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{0C90F432-198A-45FD-A1A8-A14DFB47FE6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80064396-C3F3-4D92-9FCF-7C44B52DBC6E}.Debug|Any CPU.ActiveCfg = Release|Any CPU
+		{80064396-C3F3-4D92-9FCF-7C44B52DBC6E}.Debug|Any CPU.Build.0 = Release|Any CPU
+		{80064396-C3F3-4D92-9FCF-7C44B52DBC6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80064396-C3F3-4D92-9FCF-7C44B52DBC6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C90F432-198A-45FD-A1A8-A14DFB47FE6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C90F432-198A-45FD-A1A8-A14DFB47FE6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C90F432-198A-45FD-A1A8-A14DFB47FE6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C90F432-198A-45FD-A1A8-A14DFB47FE6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4BF5692D-8290-4789-A4FB-DDAE5062B36A}
+	EndGlobalSection
+EndGlobal

@@ -264,7 +264,7 @@ namespace EncryptedNetwork
             ~EncryptedWriteBlock() { Dispose(false); aes = null; }
         }
 
-        private readonly RSACryptoServiceProvider you;
+        private RSACryptoServiceProvider you;
         private RSACryptoServiceProvider them;
 
         /// <summary>
@@ -305,7 +305,7 @@ namespace EncryptedNetwork
         /// Initialise a new <see cref="EncryptedNetworkStream"/> from a <seealso cref="NetworkStream"/>
         /// </summary>
         /// <param name="stream">The Stream to set backing for.</param>
-        public EncryptedNetworkStream(NetworkStream stream) : this(stream, new RSACryptoServiceProvider()) { }
+        public EncryptedNetworkStream(NetworkStream stream) : this(stream, new RSACryptoServiceProvider()) { KeepPrivateCSPAlive = false; }
         /// <summary>
         /// Initialise a new <see cref="EncryptedNetworkStream"/> from a <seealso cref="Socket"/>
         /// </summary>
@@ -318,7 +318,7 @@ namespace EncryptedNetwork
         /// </summary>
         /// <param name="stream">The Socket to set backing for. (NOTE: Closes the socket on dispose)</param>
         public EncryptedNetworkStream(Socket sock)
-            : this(sock, new RSACryptoServiceProvider()) { }
+            : this(sock, new RSACryptoServiceProvider()) { KeepPrivateCSPAlive = false; }
 
         /// <summary>
         /// Exchange the RSA public keys asynchronously.
@@ -360,10 +360,25 @@ namespace EncryptedNetwork
         public void Exchange()
         => ExchangeAsync().Sync();
 
+        /// <summary>
+        /// Keep <see cref="PrivateCSP"/> alive after disposing?
+        /// </summary>
+        public bool KeepPrivateCSPAlive { get; set; } = true;
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
+
+            if(disposing)
+            {
+                if (!KeepPrivateCSPAlive)
+                    you.Dispose();
+                them?.Dispose();
+            }
+
+            you = null;
+            them = null;
         }
+        ~EncryptedNetworkStream() => Dispose(false);
 
         /// <summary>
         /// Read unencrypted data from the backing stream.

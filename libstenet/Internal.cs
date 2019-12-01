@@ -30,12 +30,24 @@ namespace EncryptedNetwork
             backing = s;
         }
 
+        protected ObjectDisposedException ThrowIfDisposed()
+        {
+            if (Disposed)
+                throw new ObjectDisposedException(GetType().Name + " object has been disposed.");
+            else return null;
+        }
+
+        protected bool Disposed { get; private set; } = false;
         protected override void Dispose(bool disposing)
         {
+            ThrowIfDisposed();
+
+            Disposed = true;
             if (disposing)
             {
                 if (!KeepBackingStreamAlive) backing.Dispose();
             }
+            backing = null;
         }
 
         #region Stream Overrides
